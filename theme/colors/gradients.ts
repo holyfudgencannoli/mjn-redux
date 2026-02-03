@@ -1,12 +1,13 @@
 import { ColorValue } from "react-native";
+import { neutral300, neutral400, neutral500, neutral600 } from "./shades";
 
 export const Gradients = {
     layout: {
         primary_background: [
-            "#E6D3A3",
-            "#7FA9B8",
-            "#4F7D5B",
-            "#7B5E44",
+            neutral300,
+            neutral400,
+            neutral500,
+            neutral600,
         ]
         ,
         secondary_background: ['#00ff88', '#8800ff', '#ff8800'],
@@ -15,4 +16,5 @@ export const Gradients = {
         secondary_background: [ColorValue, ColorValue, ColorValue]
     }
 } as const;
+
 

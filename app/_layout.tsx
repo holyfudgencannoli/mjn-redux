@@ -1,13 +1,16 @@
+import Header from "@/components/header";
 import { migrateDbIfNeeded } from "@/db/migrations";
 import DrizzleProvider from "@/hooks/use-drizzle";
+import { useStyles } from "@/theme/hooks/use-styles";
+import { getHeaderTitle } from "@react-navigation/elements";
 import { Theme, useTheme } from "@theme/hooks/use-theme";
 import Drawer from 'expo-router/drawer';
 import { SQLiteDatabase, SQLiteProvider } from "expo-sqlite";
 import { StatusBar } from "expo-status-bar";
 import { useCallback } from "react";
-import { Provider as PaperProvider } from 'react-native-paper';
+import { FlexStyle, TextStyle, ViewStyle } from "react-native";
+import { PaperProvider } from 'react-native-paper';
 
-const { scheme } : Theme = useTheme();
 
 export const unstable_settings = {
   anchor: '(drawers)',
@@ -15,8 +18,9 @@ export const unstable_settings = {
 
 export default function RootLayout() {
 	const { scheme }: Theme = useTheme()
+  const { colors } = useTheme()
   // const db = useSQLiteContext();
-//   const { app, form, header } = useStyles()
+  const { header } = useStyles()
 
   const handleInit = useCallback(async (db: SQLiteDatabase) => {
       console.log("Initializing...")
@@ -41,8 +45,44 @@ export default function RootLayout() {
       <PaperProvider>
         <DrizzleProvider>    
           <StatusBar style={scheme === 'dark' ? "light" : "dark"} />
-          <Drawer>
+          <Drawer
+            // layout={Header}
+            // initialRouteName="Dashboard" 
+            screenOptions={{
+              
+              popToTopOnBlur: true,
+              freezeOnBlur: true,
+              lazy: true,
+                header: ({ route, options, navigation }) => {
+                    const title = getHeaderTitle(options, route.name);
+                    console.log(`Focused?: `, navigation.isFocused())
+                    console.log((options.title))
+
+                    return (                        
+                        <Header 
+                            // navigation={navigation} 
+                            title={title} 
+                            style={header.container as FlexStyle & ViewStyle} 
+                            textStyle={header.title as TextStyle} 
+                        />
+                    ) 
+                },
+                headerTintColor: colors.headerTint,
+                drawerActiveTintColor: colors.drawerActiveTint,
+                drawerInactiveTintColor: colors.drawerInactiveTint,
+                drawerHideStatusBarOnOpen: true,
+                drawerStyle: {
+                    backgroundColor: colors.drawerBackground
+                }, 
+                drawerType: 'front',
+                swipeEnabled: true,
+                swipeEdgeWidth: 50,
+
+            }}
+          >
             <Drawer.Screen name="(dashboard)" options={{ title: 'Dashboard' }}  />
+            <Drawer.Screen name="new-item" options={{ title: 'New Item' }} />
+
           </Drawer>
         </DrizzleProvider>
       </PaperProvider>

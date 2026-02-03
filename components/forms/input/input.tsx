@@ -1,43 +1,59 @@
-import { useTheme } from '@theme/hooks/use-theme';
-import { useSpacing } from '@theme/spacing';
-import { useTypography } from '@theme/typography';
-import React, { forwardRef } from 'react';
-import { useForm } from 'react-hook-form';
-import { StyleSheet, TextInput, TextInputProps } from 'react-native';
+import { Label } from "@react-navigation/elements";
+import { Controller, FieldValues, RegisterOptions, useController } from "react-hook-form";
+import { TextInput, TextInputProps, TextStyle, useWindowDimensions, ViewStyle } from "react-native";
 
-export interface InputProps extends Omit<TextInputProps, 'size'> {
-  size?: 'sm' | 'md' | 'lg';
-  disabled?: boolean
-}
+interface Props extends Omit<TextInputProps, 'style'> {
+  name: string;
+  control: any;
+  label?: string;
+  editable?: boolean;
+  style?: {
+    labelStyle?: TextStyle;
+    inputStyle?: TextStyle & ViewStyle;
+  };
+  default_value?: string;
+  rules?: Omit<RegisterOptions<FieldValues, string>, 'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'>;
+  props?: TextInputProps;
+};
 
-const Input = forwardRef<TextInput, InputProps>((props, ref) => {
-  const { setValue, resetField, watch } = useForm();
-  const { style, size = 'md', ...rest } = props;
-  const spacing = useSpacing();
-  const typography = useTypography();
-  const { colors } = useTheme();
-
-
-  const styles = StyleSheet.create({
-    base: {
-      borderWidth: 1,
-      borderColor: colors.primary,
-      borderRadius: 4,
-      paddingHorizontal: spacing.sm,
-      paddingVertical: size === 'sm' ? spacing.xs : size === 'lg' ? spacing.md : spacing.sm,
-      fontSize: size === 'sm' ? typography.sm.fontSize : size === 'lg' ? typography.lg.fontSize : typography.md.fontSize,
-      color: colors.textPrimary,
-    },
+export default function Input({
+  name,
+  control,
+  label,
+  editable = true,
+  style,
+  default_value,
+  rules,
+  props
+}:Props) {
+  const { field, fieldState } = useController({
+    control,
+    name,
   });
 
-  return (
-    <TextInput 
-      ref={ref} 
-      style={[styles.base, style]} 
-      {...rest} 
-    />
-  );
-});
+  const window = useWindowDimensions();
+  const { labelStyle, inputStyle } = style || {};
 
-Input.displayName = 'Input';
-export default Input;
+  return (
+    <>
+      {label && <Label style={{...labelStyle, marginVertical: window.width/25}}>{label}</Label>}
+      <Controller 
+        rules={rules}
+        name={name}
+        control={control}
+        defaultValue={default_value || ''}
+        render={({ field }) => (
+          <TextInput
+            value={field.value}
+            onChangeText={field.onChange}
+            onBlur={field.onBlur}
+            editable={editable}
+            style={inputStyle}
+            {...props}
+          />
+        )}
+      />
+      
+    </>
+  );
+}

@@ -1,4 +1,4 @@
-import { useColorScheme } from 'react-native';
+import { useColorScheme } from '@theme/hooks/use-color-scheme';
 import { useShades } from './shades';
 
 export type SemanticColors = {
@@ -6,6 +6,11 @@ export type SemanticColors = {
   textSecondary: string;
   textTertiary: string;
   textInverse: string;
+  headerTint: string;
+  drawerActiveTint: string;
+  drawerInactiveTint: string;
+  drawerBackground: string;
+  buttonPrimary: string;
   background: string;
   backgroundSecondary: string;
   surface: string;
@@ -38,6 +43,13 @@ export function getLightColors(shades: ReturnType<typeof useShades>): SemanticCo
     textSecondary: shades.neutral[700],
     textTertiary: shades.neutral[500],
     textInverse: shades.neutral[100],
+
+    
+    headerTint: 'white',
+    drawerActiveTint: shades.secondary[700],
+    drawerInactiveTint: shades.secondary[100],
+    drawerBackground: shades.secondary[200],
+    buttonPrimary: shades.secondary[700],
 
     background: shades.neutral[100],
     backgroundSecondary: shades.neutral[200],
@@ -78,6 +90,12 @@ export function getDarkColors(shades: ReturnType<typeof useShades>): SemanticCol
     textSecondary: shades.neutral[300],
     textTertiary: shades.neutral[500],
     textInverse: shades.neutral[900],
+
+    headerTint: 'white',
+    drawerActiveTint: '#77a',
+    drawerInactiveTint: '#ccc',
+    drawerBackground: 'rgba(18, 203, 163, 0.9)',
+    buttonPrimary: '#f74a63cc',
 
     background: shades.neutral[900],
     backgroundSecondary: shades.neutral[800],
@@ -171,3 +189,6 @@ export const Colors = {
   light: getLightColors(mockShades),
   dark: getDarkColors(mockShades),
 };
+
+export { Gradients } from './gradients';
+

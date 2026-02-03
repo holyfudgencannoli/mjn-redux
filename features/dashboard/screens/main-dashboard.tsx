@@ -22,7 +22,7 @@ export default function MainDashboard() {
   const navigation = router
   const { app } = useStyles();
   const { scheme, shades } = useTheme();
-  const { secondary } = shades;
+  const { secondary, neutral } = shades;
   
   
   const setNavBar = async() => {
@@ -45,7 +45,7 @@ export default function MainDashboard() {
           start={{ x: 0.3, y: 0 }}
           end={{ x: 0.3, y: 1 }}
           locations={[0.1, 0.25, 0.77, 1]}
-          colors={scheme === 'dark' ? [secondary["700"], secondary["600"], secondary["500"], secondary["400"]] : [secondary["100"], secondary["200"], secondary["300"], secondary["400"]]}  
+          colors={scheme === 'dark' ? [neutral["700"], secondary["600"], secondary["500"], secondary["400"]] : [neutral["300"], neutral["400"], neutral["500"], neutral["600"]]}  
           style={{ flex: 1 }}
         >
           {/* <GalleryScreen /> */}

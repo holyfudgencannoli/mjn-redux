@@ -1,23 +1,23 @@
 
 export const primary100 = 'hsl(270, 100%, 90%)';
-export const primary200 = 'hsl(270, 100%, 80%)';
-export const primary300 = 'hsl(270, 100%, 70%)';
-export const primary400 = 'hsl(270, 100%, 60%)';
-export const primary500 = 'hsl(270, 100%, 50%)';
-export const primary600 = 'hsl(270, 100%, 40%)';
-export const primary700 = 'hsl(270, 100%, 30%)';
-export const primary800 = 'hsl(270, 100%, 20%)';
-export const primary900 = 'hsl(270, 100%, 10%)';
+export const primary200 = 'hsl(260, 100%, 80%)';
+export const primary300 = 'hsl(260, 100%, 70%)';
+export const primary400 = 'hsl(260, 100%, 60%)';
+export const primary500 = 'hsl(260, 100%, 50%)';
+export const primary600 = 'hsl(260, 100%, 40%)';
+export const primary700 = 'hsl(260, 100%, 30%)';
+export const primary800 = 'hsl(260, 100%, 20%)';
+export const primary900 = 'hsl(260, 100%, 10%)';
 
-export const secondary100 = 'hsl(240, 100%, 90%)';
-export const secondary200 = 'hsl(240, 100%, 80%)';
-export const secondary300 = 'hsl(240, 100%, 70%)';
-export const secondary400 = 'hsl(240, 100%, 60%)';
-export const secondary500 = 'hsl(240, 100%, 50%)';
-export const secondary600 = 'hsl(240, 100%, 40%)';
-export const secondary700 = 'hsl(240, 100%, 30%)';
-export const secondary800 = 'hsl(240, 100%, 20%)';
-export const secondary900 = 'hsl(240, 100%, 10%)';
+export const secondary100 = 'hsl(225, 100%, 90%)';
+export const secondary200 = 'hsl(225, 100%, 80%)';
+export const secondary300 = 'hsl(225, 100%, 70%)';
+export const secondary400 = 'hsl(225, 100%, 60%)';
+export const secondary500 = 'hsl(225, 100%, 50%)';
+export const secondary600 = 'hsl(225, 100%, 40%)';
+export const secondary700 = 'hsl(225, 100%, 30%)';
+export const secondary800 = 'hsl(225, 100%, 20%)';
+export const secondary900 = 'hsl(225, 100%, 10%)';
 
 export const accent100 = 'hsl(90, 100%, 90%)';
 export const accent200 = 'hsl(90, 100%, 80%)';

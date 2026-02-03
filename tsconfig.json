@@ -5,6 +5,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
+      "@adapters": ["./adapters"],
+      "@adapters/*": ["./adapters/*"],
       "@app": ["./app"],
       "@app/*": ["./app/*"],
       "@assets": ["./assets"],
@@ -21,10 +23,12 @@
       "@hooks/*": ["./hooks/*"],
       "@navigation": ["./navigation"],
       "@navigation/*": ["./navigation/*"],
+      "@services": ["./services"],
+      "@services/*": ["./services/*"],
       "@theme": ["./theme"],
       "@theme/*": ["./theme/*"],
-      "@types": ["./types"],
-      "@types/*": ["./types/*"],
+      "@types": ["./type-models"],
+      "@types/*": ["./type-models/*"],
       "@utils": ["./utils"],
       "@utils/*": ["./utils/*"]
     }

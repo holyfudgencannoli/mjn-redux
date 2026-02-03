@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { primary500, secondary100, secondary400 } from "../colors/shades";
 
 export const formStyles = {
   light: StyleSheet.create({
@@ -6,8 +7,8 @@ export const formStyles = {
       fontSize: 18,
       textAlign:  'center',
       fontWeight: 'bold',
-      color: 'white',
-      textShadowColor: 'red',
+      color: primary500,
+      textShadowColor: secondary100,
       textShadowRadius: 16,
       // marginVertical: 16,
       // paddingVertical: 8
@@ -21,16 +22,17 @@ export const formStyles = {
       textShadowRadius: 16,
     },
     input: {
-      backgroundColor:'transparent', 
-      width: '85%', 
-      color: 'white', 
-      fontSize: 16, 
-      marginBottom: 12, 
+      width: '100%', 
+      backgroundColor: 'transparent', 
+      fontSize: 18,
+      color: secondary400, 
+      textShadowColor: secondary100  , 
+      textShadowRadius: 16, 
+      textAlign: 'center', 
       borderBottomColor: 'white', 
-      borderBottomWidth: 1,
-      textAlign: 'center',
-      margin: 'auto',
-      // fontFamily: Fonts.serif,
+      borderBottomWidth: 1, 
+      borderRadius: 8, 
+      minHeight: 50
     },
     surface: {
       padding: 8,
