@@ -1,24 +1,50 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { migrateDbIfNeeded } from "@/db/migrations";
+import DrizzleProvider from "@/hooks/use-drizzle";
+import { Theme, useTheme } from "@theme/hooks/use-theme";
+import Drawer from 'expo-router/drawer';
+import { SQLiteDatabase, SQLiteProvider } from "expo-sqlite";
+import { StatusBar } from "expo-status-bar";
+import { useCallback } from "react";
+import { Provider as PaperProvider } from 'react-native-paper';
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
+const { scheme } : Theme = useTheme();
 
 export const unstable_settings = {
-  anchor: '(tabs)',
+  anchor: '(drawers)',
 };
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+	const { scheme }: Theme = useTheme()
+//   const { app, form, header } = useStyles()
 
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
-  );
+  const handleInit = useCallback(async (db: SQLiteDatabase) => {
+      console.log("Initializing...")
+		try {
+			await migrateDbIfNeeded(db);
+			console.log("✅ Migration complete!");
+		} catch (err) { 
+			console.error("❌ Migration failed:", err);
+		} 
+  }, []);
+
+    // const [permissionStatus, requestPermission] = usePermissions()
+
+  return(
+    <SQLiteProvider 
+      databaseName="mycologger.db"
+      onInit={async (db: SQLiteDatabase) => {
+        console.log('Database initialized');
+        await handleInit(db);
+      }}
+    >
+      <PaperProvider>
+        <DrizzleProvider>    
+          <StatusBar style={scheme === 'dark' ? "light" : "dark"} />
+          <Drawer>
+            <Drawer.Screen name="(dashboard)" options={{ title: 'Dashboard' }}  />
+          </Drawer>
+        </DrizzleProvider>
+      </PaperProvider>
+		</SQLiteProvider>
+  )
 }
