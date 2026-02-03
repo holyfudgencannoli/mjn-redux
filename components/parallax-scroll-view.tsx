@@ -10,6 +10,7 @@ import Animated, {
 import { ThemedView } from '@/components/themed-view';
 import { useColorScheme } from '@theme/hooks/use-color-scheme';
 import { useThemeColor } from '@theme/hooks/use-theme-color';
+import { useTheme } from '@/theme/hooks/use-theme';
 
 const HEADER_HEIGHT = 250;
 
@@ -23,6 +24,7 @@ export default function ParallaxScrollView({
   headerImage,
   headerBackgroundColor,
 }: Props) {
+  const { colors } = useTheme();
   const backgroundColor = useThemeColor({}, 'background');
   const colorScheme = useColorScheme() ?? 'light';
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
