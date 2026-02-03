@@ -10,15 +10,12 @@ import { useStyles } from '@/theme/hooks/use-styles';
 import { useFocusEffect } from "@react-navigation/native";
 import * as NavBar from 'expo-navigation-bar';
 import { useRouter } from "expo-router";
-import { useSQLiteContext } from "expo-sqlite";
 import { useCallback } from "react";
 import SystemNavigationBar from 'react-native-system-navigation-bar';
 
 
 export default function MainDashboard() {
-  const db = useSQLiteContext();
-
-
+  // const db = useSQLiteContext();
   // const itemService = useItemService();
   // const dashboardService = useDashboardService();
   const router = useRouter();

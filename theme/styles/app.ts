@@ -1,5 +1,5 @@
-import { Fonts } from "@/theme/theme";
 import { StyleSheet } from "react-native";
+import { Fonts } from "../fonts";
 
 export const appStyles = {
   light: StyleSheet.create({
@@ -9,7 +9,7 @@ export const appStyles = {
     table: {},
     text: {
       color: 'white',
-      fontSize: 16,
+      fontSize: 16, 
       lineHeight: 24,
       fontFamily: Fonts.sans,
     }

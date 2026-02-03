@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useMemo } from 'react';
 import { useDrizzleStudio } from 'expo-drizzle-studio-plugin';
 import { SQLiteDatabase, useSQLiteContext } from 'expo-sqlite';
+import React, { createContext, useContext, useMemo } from 'react';
 
 /**
  * Lightweight typed wrapper around the expo-drizzle hook.
@@ -21,7 +21,7 @@ export interface DrizzleProviderProps {
   db?: SQLiteDatabase | null;
 }
 
-export function DrizzleProvider({ children,}: DrizzleProviderProps) {
+export function DrizzleProvider({ children }: DrizzleProviderProps) {
   // `useDrizzleStudio` is a hook provided by the plugin and must be called at top-level
     const db = useSQLiteContext();
 

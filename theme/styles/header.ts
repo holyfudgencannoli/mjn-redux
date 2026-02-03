@@ -1,5 +1,5 @@
 // import { primary, secondary } from "@/constants/theme";
-import { primary100, secondary400 } from "@/theme/theme";
+import { primary100, secondary400 } from "@theme/colors/shades";
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 
 
