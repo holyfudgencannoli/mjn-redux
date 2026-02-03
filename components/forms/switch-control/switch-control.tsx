@@ -1,5 +1,5 @@
-import { useSpacing } from '@/constants/theme/spacing';
-import { useColors } from '@/hooks/use-colors';
+import { useTheme } from '@theme/hooks/use-theme';
+import { useSpacing } from '@theme/spacing';
 import React, { forwardRef } from 'react';
 import { StyleSheet, Switch, SwitchProps, Text, View } from 'react-native';
 
@@ -12,7 +12,7 @@ const SwitchControl = forwardRef<Switch, SwitchControlProps>((props, ref) => {
   const { label, style, ...rest } = props;
 
   const spacing = useSpacing();
-  const colors = useColors();
+  const { colors } = useTheme();
 
   const styles = StyleSheet.create({
     container: { flexDirection: 'row', alignItems: 'center' },

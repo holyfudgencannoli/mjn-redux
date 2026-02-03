@@ -1,7 +1,7 @@
-import { useShades } from '@/constants/theme/shades';
-import { useSpacing } from '@/constants/theme/spacing';
-import { useTypography } from '@/constants/theme/typography';
-import { useColors } from '@/hooks/use-colors';
+import { useShades } from '@theme/colors/shades';
+import { useTheme } from '@theme/hooks/use-theme';
+import { useSpacing } from '@theme/spacing';
+import { useTypography } from '@theme/typography';
 import { StyleSheet, Text, View } from 'react-native';
 
 export const Label: React.FC<any> = ({
@@ -19,7 +19,7 @@ export const Label: React.FC<any> = ({
   const typography = useTypography();
   const spacing = useSpacing();
   const shades = useShades();
-  const colors = useColors();
+  const { colors } = useTheme();
 
   const styles = StyleSheet.create({
     container: { marginBottom: spacing.sm },

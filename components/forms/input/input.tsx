@@ -1,6 +1,6 @@
-import { useSpacing } from '@/constants/theme/spacing';
-import { useTypography } from '@/constants/theme/typography';
-import { useColors } from '@/hooks/use-colors';
+import { useTheme } from '@theme/hooks/use-theme';
+import { useSpacing } from '@theme/spacing';
+import { useTypography } from '@theme/typography';
 import React, { forwardRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { StyleSheet, TextInput, TextInputProps } from 'react-native';
@@ -15,7 +15,7 @@ const Input = forwardRef<TextInput, InputProps>((props, ref) => {
   const { style, size = 'md', ...rest } = props;
   const spacing = useSpacing();
   const typography = useTypography();
-  const colors = useColors();
+  const { colors } = useTheme();
 
 
   const styles = StyleSheet.create({

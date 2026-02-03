@@ -15,6 +15,7 @@ export const unstable_settings = {
 
 export default function RootLayout() {
 	const { scheme }: Theme = useTheme()
+  // const db = useSQLiteContext();
 //   const { app, form, header } = useStyles()
 
   const handleInit = useCallback(async (db: SQLiteDatabase) => {

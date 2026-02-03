@@ -1,8 +1,8 @@
 // src/components/Select/Select.tsx
-import { useColors } from '@/constants/theme/colors';
-import { useSpacing } from '@/constants/theme/spacing';
-import { useTypography } from '@/constants/theme/typography';
 import { Picker } from '@react-native-picker/picker';
+import { useTheme } from '@theme/hooks/use-theme';
+import { useSpacing } from '@theme/spacing';
+import { useTypography } from '@theme/typography';
 import React, { forwardRef } from 'react';
 import { StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
 
@@ -25,7 +25,7 @@ const Select = forwardRef<View, SelectProps>((props, ref) => {
   const { options, selectedValue, onValueChange, placeholder, size = 'md', style, type = 'above' } = props;
   const spacing = useSpacing();
   const typography = useTypography();
-  const colors = useColors();
+  const { colors } = useTheme();
 
 
   const styles = StyleSheet.create({

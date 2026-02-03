@@ -1,11 +1,11 @@
-import { useSpacing } from '@/constants/theme/spacing';
-import { useTypography } from '@/constants/theme/typography';
-import { useColors } from '@/hooks/use-colors';
+import { useTheme } from '@theme/hooks/use-theme';
+import { useSpacing } from '@theme/spacing';
+import { useTypography } from '@theme/typography';
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 
 const FormError: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
-  const colors = useColors();
+  const { colors } = useTheme();
   const typography = useTypography();
   const spacing = useSpacing();
   

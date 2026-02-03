@@ -32,7 +32,7 @@ export type SemanticColors = {
   tabIconSelected: string;
 };
 
-function getLightColors(shades: ReturnType<typeof useShades>): SemanticColors {
+export function getLightColors(shades: ReturnType<typeof useShades>): SemanticColors {
   return {
     textPrimary: shades.neutral[900],
     textSecondary: shades.neutral[700],
@@ -72,7 +72,7 @@ function getLightColors(shades: ReturnType<typeof useShades>): SemanticColors {
   };
 }
 
-function getDarkColors(shades: ReturnType<typeof useShades>): SemanticColors {
+export function getDarkColors(shades: ReturnType<typeof useShades>): SemanticColors {
   return {
     textPrimary: shades.neutral[100],
     textSecondary: shades.neutral[300],
@@ -120,7 +120,54 @@ export function useColors(): SemanticColors {
 }
 
 // Legacy Colors object for backward compatibility
+const mockShades: ReturnType<typeof useShades> = {
+  primary: {
+    100: '#f3e8ff',
+    200: '#e9d5ff',
+    300: '#d8b4fe',
+    400: '#c084fc',
+    500: '#a855f7',
+    600: '#9333ea',
+    700: '#7c3aed',
+    800: '#6b21a8',
+    900: '#581c87',
+  },
+  secondary: {
+    100: '#e0e7ff',
+    200: '#c7d2fe',
+    300: '#a5b4fc',
+    400: '#818cf8',
+    500: '#6366f1',
+    600: '#4f46e5',
+    700: '#4338ca',
+    800: '#3730a3',
+    900: '#312e81',
+  },
+  accent: {
+    100: '#ecfdf5',
+    200: '#d1fae5',
+    300: '#a7f3d0',
+    400: '#6ee7b7',
+    500: '#34d399',
+    600: '#10b981',
+    700: '#059669',
+    800: '#047857',
+    900: '#065f46',
+  },
+  neutral: {
+    100: '#f5f5f4',
+    200: '#e7e5e4',
+    300: '#d6d3d1',
+    400: '#a8a29e',
+    500: '#78716c',
+    600: '#57534e',
+    700: '#44403c',
+    800: '#292524',
+    900: '#1c1917',
+  },
+};
+
 export const Colors = {
-  light: getLightColors({} as any), // Placeholder, but in practice use the hook
-  dark: getDarkColors({} as any),
+  light: getLightColors(mockShades),
+  dark: getDarkColors(mockShades),
 };

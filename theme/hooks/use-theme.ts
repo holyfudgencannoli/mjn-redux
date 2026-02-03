@@ -5,7 +5,8 @@
 
 // import { app, form, header } from "@/styles";
 import { useMemo } from 'react';
-import { Colors } from '../colors';
+import { getDarkColors, getLightColors } from '../colors';
+import { useShades } from '../colors/shades';
 import { Fonts } from '../fonts';
 import { useColorScheme } from './use-color-scheme';
 import { useStyles } from './use-styles';
@@ -18,12 +19,14 @@ import { useStyles } from './use-styles';
 export function useTheme() {
   const scheme = useColorScheme() ?? 'light';
   const styles = useStyles();
+  const shades = useShades();
 
   return useMemo(() => ({
     scheme,
-    colors: Colors[scheme],
+    colors: scheme === 'dark' ? getDarkColors(shades) : getLightColors(shades),
     styles: styles,
     fonts: Fonts,
+    shades: shades
   } as const), [scheme, styles]);
 }
 
