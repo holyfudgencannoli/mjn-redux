@@ -12,74 +12,69 @@ import { Surface } from "react-native-paper";
 
 
 export default function RecipeDataListScreen() {
-    const db = useSQLiteContext();    
-    const [recipes, setRecipes] = useState<RecipeType[]>([])
-    const [modalOpen, setModalOpen] = useState(false)
-    const [currentItem, setCurrentItem] = useState<RecipeType>()
+  const db = useSQLiteContext();    
+  const [recipes, setRecipes] = useState<RecipeType[]>([])
+  const [modalOpen, setModalOpen] = useState(false)
+  const [currentItem, setCurrentItem] = useState<RecipeType>()
 
-    const getRecipeData = async() => {
-        const data: RecipeType[] = await RecipeRepo.readAll(db)
-        setRecipes(data)
-    }
+  const getRecipeData = async() => {
+    const data: RecipeType[] = await RecipeRepo.readAll(db)
+    setRecipes(data)
+  }
 
-    useFocusEffect(
-        useCallback(() => {
-            getRecipeData()
-            console.log(recipes)
-        }, [])
-    )
+  useFocusEffect(
+    useCallback(() => {
+      getRecipeData()
+      console.log(recipes)
+    }, [])
+  )
 
-    const columns = [
-        {key: 'name', title: 'Item Name'},
-    ]
+  const columns = [
+    {key: 'name', title: 'Item Name'},
+  ]
 
-    function openModal(item: RecipeType) {
-        setCurrentItem(item)
-        setModalOpen(true)
-    }
-    
+  function openModal(item: RecipeType) {
+    setCurrentItem(item)
+    setModalOpen(true)
+  }
+  
 
 
-    return(
-      <ScreenPrimative edges={[]}>
-        <View style={styles.container}>
-          <LinearGradient
-            start={{ x: 0, y: 0 }}
-            end={{ x: 0.3, y: 0.9 }}
-            colors={["#94F8", "#00f", "#057"]}
-            style={{ flex: 1, padding: 16 }}
-          >
-                <Surface style={styles.surfaceMetaContainer}>                        
-                    <Surface style={styles.surfaceContainer}>
-                    {recipes && recipes.length > 0 ? (
-                        <>
-                        <ScrollableDataTable 
-                            data={recipes? recipes : []}
-                            columns={columns}
-                            headerTextStyle={{ textAlign: 'center', color: 'rgba(255,255,255,0.7)', textShadowColor:'blue', textShadowRadius: 4 }}
-                            cellTextStyle={{ textAlign: 'center', color: 'white', textShadowColor: 'black', textShadowRadius:4 }}
-                            headerStyle={{ backgroundColor: 'rgba(255,55,55,0.7)', }}
-                            onRowPress={(item: RecipeType) => {openModal(item)}}
-                        />
-                        </>
-                        ) : (
-                        <>
-                        </>
-                        )}
-                    </Surface>
-                    {modalOpen && (
-                      <RecipeModal
-                        visible={modalOpen}
-                        setModalOpen={setModalOpen}
-                        item={currentItem as RecipeType}
-                      />
-                    )}
-                </Surface>
-              </LinearGradient>
-            </View>
-          
-      </ScreenPrimative>
-    )
+  return(
+    <ScreenPrimative edges={[]}>
+      <View style={styles.container}>
+        <LinearGradient
+          start={{ x: 0, y: 0 }}
+          end={{ x: 0.3, y: 0.9 }}
+          colors={["#94F8", "#00f", "#057"]}
+          style={{ flex: 1, padding: 16 }}
+        >
+          <Surface style={styles.surfaceMetaContainer}>                        
+            <Surface style={styles.surfaceContainer}>
+            {recipes && recipes.length > 0 ? (
+              <ScrollableDataTable 
+                data={recipes? recipes : []}
+                columns={columns}
+                headerTextStyle={{ textAlign: 'center', color: 'rgba(255,255,255,0.7)', textShadowColor:'blue', textShadowRadius: 4 }}
+                cellTextStyle={{ textAlign: 'center', color: 'white', textShadowColor: 'black', textShadowRadius:4 }}
+                headerStyle={{ backgroundColor: 'rgba(255,55,55,0.7)', }}
+                onRowPress={(item: RecipeType) => {openModal(item)}}
+              />) : (
+              <></>
+            )}
+            </Surface>
+            {modalOpen && (
+              <RecipeModal
+                visible={modalOpen}
+                setModalOpen={setModalOpen}
+                item={currentItem as RecipeType}
+              />
+            )}
+          </Surface>
+        </LinearGradient>
+      </View>
+    </ScreenPrimative>
+  )
 
 }
 
