@@ -1,11 +1,11 @@
 import { ItemType } from "./db/item";
 import { PurchaseLogType, PurchaseType } from "./db/purchase-log";
+import { IngredientType, RecipeType } from "./db/recipes";
 import { VendorType } from "./db/vendor";
 
 export {
-  ItemType,
-  PurchaseLogType, PurchaseType,
-  VendorType
+  IngredientType, ItemType,
+  PurchaseLogType, PurchaseType, RecipeType, VendorType
 };
 
 

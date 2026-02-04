@@ -1,4 +1,4 @@
-import * as ItemRepo from "@features/new-item-form/repo";
+import * as ItemRepo from "@/features/inventory/items/new-item-form/repo";
 import { ItemType } from "@types";
 import { SQLiteDatabase, useSQLiteContext } from "expo-sqlite";
 import { useCallback, useEffect, useState } from "react";

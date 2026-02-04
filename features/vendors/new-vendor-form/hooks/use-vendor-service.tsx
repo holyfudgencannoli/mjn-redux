@@ -1,4 +1,4 @@
-import { VendorRepo } from "@features/new-vendor-form";
+import { VendorRepo } from "@/features/vendors/new-vendor-form";
 import { VendorType } from "@types";
 import { SQLiteDatabase, useSQLiteContext } from "expo-sqlite";
 import { useCallback } from "react";

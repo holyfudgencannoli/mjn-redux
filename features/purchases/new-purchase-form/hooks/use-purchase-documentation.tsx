@@ -1,4 +1,4 @@
-import { useItemService } from "@features/new-item-form/hooks";
+import { useItemService } from "@/features/inventory/items/new-item-form/hooks";
 import { useTheme } from "@theme/hooks/use-theme";
 import type { PurchaseType } from "@types";
 import { ItemType } from "@types";

@@ -1,10 +1,10 @@
 import { ScreenPrimative } from "@/components/screen-primative";
+import { useItemService } from "@/features/inventory/items/new-item-form/hooks";
 import { primary200, primary300, primary700 } from "@/theme/colors/shades";
 import { Form } from '@components';
-import { useItemService } from "@features/new-item-form/hooks";
 import {
-  useFocusEffect,
-  useIsFocused
+    useFocusEffect,
+    useIsFocused
 } from '@react-navigation/native';
 import { Gradients } from "@theme/colors/gradients";
 import { useTheme } from "@theme/hooks/use-theme";
@@ -13,15 +13,15 @@ import { CaseHelper } from "@utils/case-helper";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import {
-  JSX,
-  useCallback,
-  useState
+    JSX,
+    useCallback,
+    useState
 } from "react";
 import { useForm } from "react-hook-form";
 import {
-  Alert,
-  Text,
-  View
+    Alert,
+    Text,
+    View
 } from 'react-native';
 import { Pressable } from "react-native-gesture-handler";
 

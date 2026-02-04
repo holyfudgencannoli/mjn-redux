@@ -5,10 +5,11 @@ import { RadioGroup } from './forms/radio-group'
 import { Select } from './forms/select'
 import { SwitchControl } from './forms/switch-control'
 import ImageSelector from './image-selector'
+import { ScrollableDataTable } from './scrollable-data-table'
 
 const Form = { Error, RadioGroup, Select, SwitchControl, Input, Label };
 
 import { ReceiptUploader } from './receipt-uploader'
 
-export { Form, ImageSelector, ReceiptUploader }
+export { Form, ImageSelector, ReceiptUploader, ScrollableDataTable }
 
