@@ -82,6 +82,7 @@ export default function RootLayout() {
           >
             <Drawer.Screen name="(dashboard)" options={{ title: 'Dashboard' }}  />
             <Drawer.Screen name="new-item" options={{ title: 'New Item' }} />
+            <Drawer.Screen name="new-purchase-form" options={{ title: 'New Purchase Form' }} />
 
           </Drawer>
         </DrizzleProvider>
