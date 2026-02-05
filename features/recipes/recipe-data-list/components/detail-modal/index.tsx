@@ -1,5 +1,5 @@
-import { recipeProps } from '@/features/recipes/types';
 import { useFocusEffect } from '@react-navigation/native';
+import { RecipeType } from '@types';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useCallback, useState } from 'react';
 import { FlatList, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -18,7 +18,7 @@ const RecipeModal = ({
 } : {
   visible: boolean, 
   setModalOpen: (modalOpen: boolean) => void, 
-  item: recipeProps
+  item: RecipeType
 }) => {
     const [ingredients, setIngredients] = useState([]);
 

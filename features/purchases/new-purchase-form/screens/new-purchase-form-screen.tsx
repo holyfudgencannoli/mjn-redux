@@ -1,34 +1,24 @@
-// import usePurchaseDocumentation from '@/shared/hooks/use-purchase-documentation';
-// import { MyTabBar } from '@components/bottom-tabs';
-import { ScreenPrimative } from "@components/screen-primative";
-// import { COLORS } from '@constants/colors';
-// import { CONTAINER, FORM } from '@constants/styles';
 import { Form } from '@/components';
-import { useFocusEffect } from "@react-navigation/native";
-import { LinearGradient } from 'expo-linear-gradient';
-import { useCallback } from "react";
-import { Alert, StyleSheet, View } from 'react-native';
-// import useItemService from '../../items/hooks/use-item-service';
-// import { tabs } from '../../items/types';
+import { useItemService } from "@/features/inventory/items/new-item-form/hooks";
+import { useVendorService } from "@/features/vendors/new-vendor-form";
+import { primary200, primary300 } from '@/theme/colors/shades';
+import { saveReceiptWithSAF } from '@adapters/file-system';
 import { ReceiptUploader } from '@components';
-import Button from '@components/ui/button';
+import { ScreenPrimative } from "@components/screen-primative";
 import { INV_UNITS, PUR_UNITS } from '@constants';
 import useInventoryEventsService from '@hooks/use-inventory-events';
 import useInventoryStatesService from '@hooks/use-inventory-states';
 import { Gradients } from '@theme/colors';
-import { VendorType } from '@types';
-// import useVendorService from '@/shared/hooks/use-vendor-service';
-import { useItemService } from "@/features/inventory/items/new-item-form/hooks";
-import { useVendorService } from "@/features/vendors/new-vendor-form";
-import { saveReceiptWithSAF } from '@adapters/file-system';
 import { useTheme } from "@theme/hooks/use-theme";
+import { VendorType } from '@types';
 import { CaseHelper } from '@utils/case-helper';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import { usePurchaseLogForm } from "../hooks";
 import usePurchaseDocumentation from "../hooks/use-purchase-documentation";
-import { onError } from '../repo/services';
 
 
 export default function NewPurchaseFormScreen() {
@@ -78,20 +68,12 @@ export default function NewPurchaseFormScreen() {
  
     const { name, category, subcategory, type } = values;
 
-    useFocusEffect(
-      useCallback(() => {
-        return() => {}
-      }, [])
-    )
 
     		// Form component logic
     const [brand, setBrand] = useState(null)
     const [vendor, setVendor] = useState<VendorType>({} as VendorType)
 
 
-    const jankSubmit = () => {
-      console.log("Submitting form...: ", values)
-    }
 
     const itemService = useItemService()
     const { navigate } = useRouter();
@@ -404,21 +386,6 @@ export default function NewPurchaseFormScreen() {
                 />
               {/* </Form.Label> */}
               <View style={{ flexDirection: 'column', alignItems: 'center' }}>
-                {/* <Text style={styles.form.label}>First name</Text>
-                <Controller
-                  control={control}
-                  render={({field: { onChange, onBlur, value }}) => (
-                    <TextInput
-                      style={styles_scoped.input}
-                      onBlur={onBlur}
-                      onChangeText={value => onChange(value)}
-                      value={value}
-                    />
-                  )}
-                  name="email"
-                  rules={{ required: true }}
-                /> */}
-                    
                 <Form.Input
                   label='Item Name'
                   rules={{ required: true }}
@@ -751,16 +718,29 @@ export default function NewPurchaseFormScreen() {
               </View>
 
               <View style={{ marginVertical: 84 }}>
-                <Button 
-                  color={colors.buttonPrimary}
-                  title='Submit'
-                  onPress={handleSubmit(onSubmit, onError)} 
-                />
+                <Pressable
+                  onLongPress={() => {
+                    console.log("Long pressed!")
+                  }}
+
+                  onPress={() => {
+                    console.log("TouchableRipple Pressed")
+                    handleSubmit(onSubmit)
+                  }}
+                  android_ripple={ { color: colors.accentHover } }
+                  style={{ marginBottom: 16, padding: 16, backgroundColor: colors.buttonPrimary, borderRadius: 8, alignItems: 'center', width: '35%', margin: 'auto', marginVertical: 24 }}
+                  
+                >
+                  <Text
+                    style={{ color: primary200, fontSize: 16, fontWeight: 'bold', textShadowColor: primary300, textShadowRadius: 8 }}
+                  >
+                    Submit Form
+                  </Text>
+                </Pressable>
               </View>
           </View>                            
         </ScreenPrimative>
       </LinearGradient>
-      {/* <MyTabBar navigation={navigation} state={navigation.getState()} tabs={tabs} /> */}
     </View>
   )
 }

@@ -1,5 +1,5 @@
 import { Form } from '@/components';
-import { ImageSelector } from '@components';
+import ImageSelector from '@components/image-selector';
 import { loadAllReceipts, ReceiptMeta, saveReceiptLocally } from '@services/local-receipt';
 import React, { useState } from 'react';
 import {
