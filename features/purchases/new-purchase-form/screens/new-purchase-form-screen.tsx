@@ -21,7 +21,7 @@ import { usePurchaseLogForm } from "../hooks";
 import usePurchaseDocumentation from "../hooks/use-purchase-documentation";
 
 
-export default function NewPurchaseFormScreen() {
+export default function  NewPurchaseFormScreen() {
 
   const { styles, colors } = useTheme();
   const vendorService = useVendorService();
@@ -412,9 +412,12 @@ export default function NewPurchaseFormScreen() {
                       {name: 'Supplies', value: 'consumable_items' },
                     ]}
                     onValueChange={(value: any) => {
-                      if (!isNewItem) return;
-                      setValue('type', value.value)
-                      console.log(value.value)
+                      if (isNewItem) {;
+                        setValue('type', value.value)
+                        console.log(value.value)
+                      } else {
+                        return;
+                      }
                     }}
                   /> 
                 </>:

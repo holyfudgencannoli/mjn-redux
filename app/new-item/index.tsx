@@ -3,8 +3,8 @@ import { useItemService } from "@/features/inventory/items/new-item-form/hooks";
 import { primary200, primary300, primary700 } from "@/theme/colors/shades";
 import { Form } from '@components';
 import {
-    useFocusEffect,
-    useIsFocused
+  useFocusEffect,
+  useIsFocused
 } from '@react-navigation/native';
 import { Gradients } from "@theme/colors/gradients";
 import { useTheme } from "@theme/hooks/use-theme";
@@ -13,15 +13,15 @@ import { CaseHelper } from "@utils/case-helper";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import {
-    JSX,
-    useCallback,
-    useState
+  JSX,
+  useCallback,
+  useState
 } from "react";
 import { useForm } from "react-hook-form";
 import {
-    Alert,
-    Text,
-    View
+  Alert,
+  Text,
+  View
 } from 'react-native';
 import { Pressable } from "react-native-gesture-handler";
 
@@ -73,12 +73,7 @@ export default function NewItem(): JSX.Element {
     }
   };
 
-  const isFocused = useIsFocused();
-  // necessary for unmounting and resetting form select
-	if (!isFocused) {
-			return <></>;
-	}
-
+  
   const randomHexColor = () => {
     return '#000000'.replace(/0/g, function () {
       return Math.round(Math.random() * 16).toString(16);
@@ -87,6 +82,15 @@ export default function NewItem(): JSX.Element {
 
   const [rippleColor, setRippleColor] = useState(randomHexColor());
   const [rippleOverflow, setRippleOverflow] = useState(false);
+  const isFocused = useIsFocused();
+
+
+
+  // necessary for unmounting and resetting form select
+	if (!isFocused) {
+			return <></>;
+	}
+
 
   return(
 		<View style={{ flex: 1 }}>	
@@ -144,7 +148,7 @@ export default function NewItem(): JSX.Element {
 
               onPress={() => {
                 console.log("TouchableRipple Pressed")
-                // handleSubmit(onSubmit)
+                handleSubmit(onSubmit)
               }}
               android_ripple={ { color: colors.accentHover } }
               style={{ marginBottom: 16, padding: 16, backgroundColor: colors.buttonPrimary, borderRadius: 8, alignItems: 'center', width: '35%', margin: 'auto', marginVertical: 24 }}
